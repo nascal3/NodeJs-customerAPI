@@ -1,0 +1,17 @@
+{
+  "name": "customerapp",
+  "version": "1.0.0",
+  "description": "RESTful app to manage customers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Caleb Nasio",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "joi": "^13.6.0",
+    "mongoose": "^5.2.7"
+  }
+}
