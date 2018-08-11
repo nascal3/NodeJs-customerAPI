@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost/vidly')
     .catch(err => console.log(err.message));
 
 app.use(express.json());
-app.use('api/customers', customers);
+app.use('/api/customers', customers);
 // app.use('api/genres', genres);
 
 
