@@ -1,6 +1,6 @@
 const express = require('express');
 const customers = require('./routes/customers.js');
-// const genres = require('./routes/genres.js');
+const genres = require('./routes/genres.js');
 const mongoose = require('mongoose');
 const app = express();
 
@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost/vidly')
 
 app.use(express.json());
 app.use('/api/customers', customers);
-// app.use('api/genres', genres);
+app.use('api/genres', genres);
 
 
 
