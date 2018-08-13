@@ -1,26 +1,6 @@
-const joi = require('joi');
-const mongoose = require('mongoose');
+const {Customer} = require('../models/customers');
 const express = require('express');
 const router = express.Router();
-
-const customerSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        minLength: 3,
-        maxLength: 30,
-        required: true
-    },
-    phone: {
-        type: Number,
-        required: true
-    },
-    isGold: {
-        type: Boolean,
-        default: false
-    }
-});
-
-const Customer = mongoose.model('customers', customerSchema);
 
 // GET ALL CUSTOMERS
 router.get('/', async (req, res) => {
