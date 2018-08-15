@@ -14,8 +14,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-       const genre = await Genres.findById(req.body.genreId);
-       if (!genre) return res.status(404).send('movie to be added on genre not found!');
+       const genre = await Genres.findById(req.body.genre);
+       if (!genre) return res.status(404).send('genre to be added on movie not found!');
 
         const movies = new Movies({
             title: req.body.title,
