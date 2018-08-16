@@ -3,6 +3,7 @@ const customers = require('./routes/customers');
 const movies = require('./routes/movies');
 const genres = require('./routes/genres');
 const users = require('./routes/users');
+const auth = require('./routes/auth');
 const mongoose = require('mongoose');
 const app = express();
 
@@ -15,6 +16,7 @@ app.use('/api/customers', customers);
 app.use('/api/genres', genres);
 app.use('/api/movies', movies);
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 const port = 3000;
 app.listen( port, () => console.log(`express running on port ${port}...`));
