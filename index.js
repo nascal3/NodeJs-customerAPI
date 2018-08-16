@@ -1,7 +1,8 @@
 const express = require('express');
-const customers = require('./routes/customers.js');
-const movies = require('./routes/movies.js');
-const genres = require('./routes/genres.js');
+const customers = require('./routes/customers');
+const movies = require('./routes/movies');
+const genres = require('./routes/genres');
+const users = require('./routes/users');
 const mongoose = require('mongoose');
 const app = express();
 
@@ -13,8 +14,7 @@ app.use(express.json());
 app.use('/api/customers', customers);
 app.use('/api/genres', genres);
 app.use('/api/movies', movies);
-
-
+app.use('/api/users', users);
 
 const port = 3000;
 app.listen( port, () => console.log(`express running on port ${port}...`));
