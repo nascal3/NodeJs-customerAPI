@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const {Users} = require('../models/users');
 const _ = require('lodash');
 const express = require('express');
@@ -10,6 +11,9 @@ router.post('/', async (req, res) => {
         if (user) return res.status(400).send('the following user already exists');
 
         user = new Users(_.pick(req.body, ['name', 'email', 'password']));
+
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
         await user.save();
 
         res.send(_.pick(user, ['_id','name', 'email']));
