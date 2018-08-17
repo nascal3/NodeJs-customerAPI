@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const bcrypt = require('bcrypt');
 const {Users} = require('../models/users');
 const _ = require('lodash');
@@ -23,7 +24,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
 
     try {
        const users = await Users.find().sort('name');

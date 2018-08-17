@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const {Movies} = require('../models/movies');
 const {Genres} = require('../models/genres');
 const express = require('express');
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     try {
        const genre = await Genres.findById(req.body.genre);
        if (!genre) return res.status(404).send('genre to be added on movie not found!');

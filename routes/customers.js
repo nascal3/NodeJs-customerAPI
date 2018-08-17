@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const {Customer} = require('../models/customers');
 const express = require('express');
 const router = express.Router();
@@ -27,7 +28,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // CREATE NEW CUSTOMER
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     try {
         const customer = new Customer({
             name: req.body.name,
@@ -43,7 +44,7 @@ router.post('/', async (req, res) => {
 });
 
 // UPDATE CUSTOMER DETAILS
-router.post('/:id', async (req, res) => {
+router.post('/:id', auth, async (req, res) => {
     const id = req.params.id;
 
     try {
@@ -64,7 +65,7 @@ router.post('/:id', async (req, res) => {
 });
 
 //  DELETE CUSTOMER
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     const id = req.params.id;
 
     try {
