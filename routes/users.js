@@ -5,6 +5,17 @@ const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
 
+
+router.get('/me', auth, async (req, res) => {
+    try {
+        const user = await Users.findById(req.user._id).select('-password');
+        res.send(user);
+    }catch (e) {
+        res.send(e.message);
+    }
+
+});
+
 router.post('/', async (req, res) => {
 
     try {
