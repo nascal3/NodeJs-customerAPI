@@ -1,4 +1,3 @@
-const asyncMiddleware = require('../middleware/async');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const {Genres} = require('../models/genres');
@@ -7,12 +6,12 @@ const express = require('express');
 const router = express.Router();
 
 
-router.get('/',  asyncMiddleware(async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     const genre = await Genres.find().sort({name:1});
     res.send(genre);
-}));
+});
 
-router.get('/:id',  asyncMiddleware(async (req, res) => {
+router.get('/:id', async (req, res) => {
 
     const id = req.params.id;
 
@@ -20,9 +19,9 @@ router.get('/:id',  asyncMiddleware(async (req, res) => {
     if (!result) return res.status(404).send('genre not found');
 
     res.send(result);
-}));
+});
 
-router.post('/', auth, asyncMiddleware(async (req, res) => {
+router.post('/', auth,async (req, res) => {
 
     const {error} = validateField(req.body);
     if (error) {
@@ -36,9 +35,9 @@ router.post('/', auth, asyncMiddleware(async (req, res) => {
 
     const result = await genre.save();
     res.send(result);
-}));
+});
 
-router.put('/:id', [auth, admin], asyncMiddleware(async (req, res) => {
+router.put('/:id', [auth, admin], async (req, res) => {
     const {error} = validateField(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -54,16 +53,16 @@ router.put('/:id', [auth, admin], asyncMiddleware(async (req, res) => {
 
     const result = genre.save();
     res.send(result);
-}));
+});
 
-router.delete('/:id', [auth, admin], asyncMiddleware(async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
     const id = req.params.id;
 
     const result = await Genres.findByIdAndRemove(id);
     if (!result) return res.status(404).send('genre not found');
 
     res.send(result);
-}));
+});
 
 function validateField(name) {
     const schema = {
