@@ -7,8 +7,15 @@ const genres = require('./routes/genres');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const error = require('./middleware/error');
+const logger = require('./middleware/logger');
 const mongoose = require('mongoose');
 const app = express();
+
+//GET UNCAUGHT ERRORS TO LOG FILE
+process.on('uncaughtException', (ex) => {
+    logger.error(ex.message, ex);
+});
+
 
 if (!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey Iis not defined!');
