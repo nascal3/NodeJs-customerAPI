@@ -12,8 +12,9 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:id', async (req, res) => {
-
     const id = req.params.id;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('invalid ID');
 
     const result = await Genres.findById(id);
     if (!result) return res.status(404).send('genre not found');
