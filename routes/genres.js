@@ -1,3 +1,4 @@
+const validateObjectId = require('../middleware/validObjectId');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const {Genres} = require('../models/genres');
@@ -11,10 +12,8 @@ router.get('/', async (req, res, next) => {
     res.send(genre);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateObjectId, async (req, res) => {
     const id = req.params.id;
-
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('invalid ID');
 
     const result = await Genres.findById(id);
     if (!result) return res.status(404).send('genre not found');
