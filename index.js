@@ -15,4 +15,6 @@ require('./startup/routes')(app);
 require('./startup/config')();
 
 const port = process.env.PORT || 3000;
-app.listen( port, () => logger.info(`express running on port ${port}...`));
+const server = app.listen( port, () => logger.info(`express running on port ${port}...`));
+
+module.exports = server;
