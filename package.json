@@ -4,7 +4,7 @@
   "description": "RESTful app to manage customers.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose"
+    "test": "jest --verbose --coverage"
   },
   "keywords": [],
   "author": "Caleb Nasio",
