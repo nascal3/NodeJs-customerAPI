@@ -4,7 +4,11 @@
   "description": "RESTful app to manage customers.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --coverage"
+    "test": "jest --verbose --coverage",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "8.11.4"
   },
   "keywords": [],
   "author": "Caleb Nasio",
